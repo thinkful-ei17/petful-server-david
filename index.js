@@ -97,28 +97,16 @@ app.delete('/api/cat', (req, res) => {
   if (!catQueue.first) {
     res.error('Out of cats');
   }
-  catQueue.dequeue()
-    .then(() => {
-      if (!catQueue.first) {
-        res.error('Out of cats');
-      }
-      res.json(catQueue.first.value);
-    })
-    .catch(err => console.error(err));
+  catQueue.dequeue();
+  res.status(204).json({message: 'success'});
 });
 
 app.delete('/api/dog', (req, res) => {
   if (!dogQueue.first) {
     res.error('Out of dogs');
   }
-  dogQueue.dequeue()
-    .then(() => {
-      if (!dogQueue.first) {
-        res.error('Out of dogs');
-      }
-      res.json(dogQueue.first.value);
-    })
-    .catch(err => console.error(err));
+  dogQueue.dequeue();
+  res.status(204).json({message: 'success'});
 });
 
 function runServer(port = PORT) {
