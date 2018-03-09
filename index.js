@@ -81,21 +81,24 @@ app.use(
 
 app.get('/api/cat', (req, res) => {
   if (!catQueue.first) {
-    res.status(500);
+    console.log('no more cats');
+    res.send('no more cats');
   }
   res.json(catQueue.first.value);
 });
 
 app.get('/api/dog', (req, res) => {
   if (!dogQueue.first) {
-    res.status(500);
+    console.log('no more dogs');
+    res.send('no more dogs');
   }
   res.json(dogQueue.first.value);
 });
 
 app.delete('/api/cat', (req, res) => {
   if (!catQueue.first) {
-    res.status(500);
+    console.log('no more cats');
+    res.send('no more cats');
   }
   catQueue.dequeue();
   res.status(204).json({message: 'success'});
@@ -103,7 +106,8 @@ app.delete('/api/cat', (req, res) => {
 
 app.delete('/api/dog', (req, res) => {
   if (!dogQueue.first) {
-    res.status(500);
+    console.log('no more dogs');
+    res.send('no more dogs');
   }
   dogQueue.dequeue();
   res.status(204).json({message: 'success'});
