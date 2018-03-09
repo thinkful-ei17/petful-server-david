@@ -81,21 +81,21 @@ app.use(
 
 app.get('/api/cat', (req, res) => {
   if (!catQueue.first) {
-    res.error('Out of cats');
+    res.status(500);
   }
   res.json(catQueue.first.value);
 });
 
 app.get('/api/dog', (req, res) => {
   if (!dogQueue.first) {
-    res.error('Out of dogs');
+    res.status(500);
   }
   res.json(dogQueue.first.value);
 });
 
 app.delete('/api/cat', (req, res) => {
   if (!catQueue.first) {
-    res.error('Out of cats');
+    res.status(500);
   }
   catQueue.dequeue();
   res.status(204).json({message: 'success'});
@@ -103,7 +103,7 @@ app.delete('/api/cat', (req, res) => {
 
 app.delete('/api/dog', (req, res) => {
   if (!dogQueue.first) {
-    res.error('Out of dogs');
+    res.status(500);
   }
   dogQueue.dequeue();
   res.status(204).json({message: 'success'});
